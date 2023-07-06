@@ -1,10 +1,10 @@
 #include "ccv.h"
 #include "ccv_internal.h"
-#if HAVE_ACCELERATE_FRAMEWORK
+//#if HAVE_ACCELERATE_FRAMEWORK
 #include <Accelerate/Accelerate.h>
-#elif HAVE_CBLAS
-#include <cblas.h>
-#endif
+//#elif HAVE_CBLAS
+//#include <cblas.h>
+//#endif
 
 double ccv_trace(ccv_matrix_t* mat)
 {

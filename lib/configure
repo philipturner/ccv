@@ -3672,7 +3672,7 @@ $as_echo "$ac_cv_prog_c_openmp" >&6; }
 
 
 if test -n "${OPENMP_CFLAGS}"; then
-	DEFINE_MACROS="$DEFINE_MACROS-D USE_OPENMP "
+	DEFINE_MACROS="$DEFINE_MACROS "
 
 	MKCFLAGS="$MKCFLAGS$OPENMP_CFLAGS "
 
@@ -3939,7 +3939,7 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_gsl_gsl_blas_dgemm" >&5
 $as_echo "$ac_cv_lib_gsl_gsl_blas_dgemm" >&6; }
 if test "x$ac_cv_lib_gsl_gsl_blas_dgemm" = xyes; then :
-  DEFINE_MACROS="$DEFINE_MACROS-D HAVE_GSL "
+  DEFINE_MACROS="$DEFINE_MACROS "
  MKLDFLAGS="$MKLDFLAGS-lgsl -lgslcblas "
 
 fi

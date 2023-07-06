@@ -9,18 +9,21 @@
 // iOS Simulator
 #elif TARGET_OS_MAC
 #include <zlib.h>
-#include <png.h>
+//#include <png.h>
+#include "/opt/homebrew/Cellar/libpng/1.6.40/include/libpng16/png.h"
 #else
 // Unsupported platform
 #endif
 #else
 #include <zlib.h>
-#include <png.h>
+//#include <png.h>
+#include "/opt/homebrew/Cellar/libpng/1.6.40/include/libpng16/png.h"
 #endif
 #include "io/_ccv_io_libpng.inc"
 #endif
 #ifdef HAVE_LIBJPEG
-#include <jpeglib.h>
+//#include <jpeglib.h>
+#include "/opt/homebrew/Cellar/jpeg-turbo/2.1.5.1/include/jpeglib.h"
 #include "io/_ccv_io_libjpeg.inc"
 #endif
 #if defined(__unix__) || (defined(__APPLE__) && defined(__MACH__))

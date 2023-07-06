@@ -34,14 +34,14 @@ load("//config:ccv.bzl", "ccv_setting")
 
 ccv_setting(
 	name = "local_config_ccv",
-	have_cblas = True,
-	have_libpng = True,
-	have_libjpeg = True,
-	have_fftw3 = True,
+	have_cblas = False,
+	have_libpng = False,
+	have_libjpeg = False,
+	have_fftw3 = False,
 	have_pthread = True,
-	have_gsl = True,
-	have_cudnn = True,
-	have_nccl = True,
-	use_openmp = True,
-	use_dispatch = True
+	have_gsl = False,
+	have_cudnn = False,
+	have_nccl = False,
+	use_openmp = False,
+	use_dispatch = False
 )

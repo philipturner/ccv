@@ -129,7 +129,6 @@ AX_CHECK_HEADER_PRESENCE([libswscale/swscale.h],
 # try to find CPU parallel libraries, OpenMP or libdispatch, we will prefer OpenMP when possible.
 AC_OPENMP
 if test -n "${OPENMP_CFLAGS}"; then
-	AC_SUBST(DEFINE_MACROS, ["$DEFINE_MACROS-D USE_OPENMP "])
 	AC_SUBST(MKCFLAGS, ["$MKCFLAGS$OPENMP_CFLAGS "])
 	AC_SUBST(MKLDFLAGS, ["$MKLDFLAGS$OPENMP_CFLAGS "])
 fi

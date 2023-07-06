@@ -4,11 +4,11 @@
 #include "nnc/ccv_nnc_easy.h"
 #include "nnc/ccv_nnc_internal.h"
 #include "../_ccv_nnc_gemm_cpu_opt.h"
-#if HAVE_ACCELERATE_FRAMEWORK
+//#if HAVE_ACCELERATE_FRAMEWORK
 #include <Accelerate/Accelerate.h>
-#elif HAVE_CBLAS
-#include <cblas.h>
-#endif
+//#elif HAVE_CBLAS
+//#include <cblas.h>
+//#endif
 
 static inline void _ccv_nnc_gbmm_and_bias(const float* const ones, const float* const a, const int a_nd, const int* const adim, const int* const astride, const float* const w, const int w_nd, const int* const wdim, const int* const wstride, const float* const bias, const int bias_nd, const int* const biasdim, const int* const biasstride, float* const b, const int b_nd, const int* const bdim, const int* const bstride, const int b_batch_size, const int transa, const int transb, const int lda_inc, const int ldb_inc, const int a_batch_inc, const int w_batch_inc, const int bias_batch_inc, const int b_batch_inc, const int b_rows, const int b_cols, const int a_cols, const int bias_rows_inc, const int b_rows_inc)
 {
