@@ -52,16 +52,6 @@ std::pair<simd::ushort3, std::optional<simd::ushort3>> GEMMKernelDescriptor::get
     return std::make_pair(simd::ushort3 { 32, 32, 8 }, std::nullopt);
   }
   
-  // Find the actual number of threadgroups, with a large block size.
-  auto ceilDivide =
-  [=](uint32_t target, uint16_t granularity) -> uint32_t {
-    return (target + uint32_t(granularity) - 1) / uint32_t(granularity);
-  };
-  int64_t actualGroups = 1;
-  actualGroups *= ceilDivide(matrixDimensions[0], 48);
-  actualGroups *= ceilDivide(matrixDimensions[1], 48);
-  actualGroups *= batchDimension;
-  
   // Does the kernel use 48x48x24xFP32 (9 KB) or 48x48x32xFP16/BF16 (6 KB)?
   bool useLargeAllocation = false;
   if (memoryPrecisions.A == GEMMOperandPrecision::FP32 ||
@@ -72,10 +62,7 @@ std::pair<simd::ushort3, std::optional<simd::ushort3>> GEMMKernelDescriptor::get
   
   // Branch on whether the allocation is large / target occupancy is low.
   if (useLargeAllocation) {
-    auto idealGroups = coreCount * 6;
-    if (actualGroups <= idealGroups) {
-      return std::make_pair(simd::ushort3 { 32, 32, 32 }, std::nullopt);
-    } else {
+    {
       auto blockDimensions = simd::ushort3 { 48, 48, 24 };
       
       // This is verified to be optimal for:
@@ -106,11 +93,9 @@ std::pair<simd::ushort3, std::optional<simd::ushort3>> GEMMKernelDescriptor::get
       }
     }
   } else {
-    auto idealGroups = coreCount * 9;
-    if (actualGroups <= idealGroups) {
-      return std::make_pair(simd::ushort3 { 32, 32, 32 }, std::nullopt);
-    } else {
+    {
       return std::make_pair(simd::ushort3 { 48, 48, 32 }, std::nullopt);
     }
   }
 }
+
